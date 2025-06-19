@@ -68,10 +68,10 @@ async def pub_(bot, message):
           await edit(m, 'Progressing', 10, sts)
           print(f"Starting Forwarding Process... From :{sts.get('FROM')} To: {sts.get('TO')} Totel: {sts.get('limit')} stats : {sts.get('skip')})")
           async for message in client.iter_messages(
-            client,
             chat_id=sts.get('FROM'), 
             limit=int(sts.get('limit')), 
             offset=int(sts.get('skip')) if sts.get('skip') else 0
+            reverse=True
             ):
                 if await is_cancelled(client, user, m, sts):
                    return
